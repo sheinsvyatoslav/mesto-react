@@ -1,0 +1,15 @@
+.navbar__user-email {
+  color: white;
+  font-size: 18px;
+  line-height: 122%;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar__user-email {
+    max-width: calc(100% - (2 * 35px));
+    word-wrap: break-word;
+    text-align: center;
+    margin: 40px auto 18px;
+  }
+}

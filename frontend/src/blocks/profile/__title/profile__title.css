@@ -1,0 +1,12 @@
+.profile__title {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  margin: 0 0 6px;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__title {
+    grid-template-columns: 1fr max-content 1fr;
+}
+}

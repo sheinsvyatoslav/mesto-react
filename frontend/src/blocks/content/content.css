@@ -1,0 +1,22 @@
+.content {
+  max-width: calc(1280px - (2 * 200px));
+  margin: 36px auto 0;
+}
+
+@media screen and (max-width: 1279px) {
+  .content {
+    max-width: calc(100% - (2 * 120px));
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .content {
+    max-width: calc(100% - (2 * 72px));
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    max-width: calc(100% - (2 * 19px));
+  }
+}

@@ -1,0 +1,28 @@
+.header__wrap-button {
+  
+}
+
+@media screen and (max-width: 767px) {
+  .header__wrap-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 20px;
+    height: 20px;
+    background-image: url(../../../images/header/wrap-logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .header__wrap-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  
+  .header__wrap-button:focus {
+    outline: none;
+  }
+}

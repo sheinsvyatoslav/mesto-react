@@ -1,0 +1,12 @@
+.form__button_theme_dark {
+  background-color: white;
+  color: black;
+  margin-top: 185px;
+}
+
+@media screen and (max-width: 767px) {
+  .form__button_theme_dark {
+    margin-top: 148px;
+    max-width: 260px;
+  }
+}

@@ -1,0 +1,9 @@
+.form__field {
+  width: 100%;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form__field:last-child {
+  margin-bottom: 0;
+}

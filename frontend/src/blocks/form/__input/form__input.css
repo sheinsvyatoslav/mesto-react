@@ -1,0 +1,15 @@
+.form__input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 121%;
+  margin-bottom: 5px;
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.form__input::placeholder {
+  font-size: 14px;
+  line-height: 121%;
+  color: #c4c4c4;
+}

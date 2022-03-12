@@ -1,0 +1,6 @@
+.card__like-button_active {
+  background-image: url(../../../../images/cards/heart_logo_active.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
