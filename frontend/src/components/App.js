@@ -27,23 +27,26 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
   const [deletedCard, setDeletedCard] = useState({})
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('jwt') ? true : false)
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false)
   const [userEmail, setUserEmail] = useState('')
   const [tooltipStatus, setTooltipStatus] = useState(false);
   const history = useHistory();
 
   //добавление первоначальных карточек и инфо о пользователе
+  
   useEffect(() => {
-    Promise.all([
-      api.getUserInfo(),
-      api.getInitialCards(),
-    ])
-    .then(([userData, cards]) => {
-      setCurrentUser(userData)
-      setCards(cards)
-    })
-    .catch(err => console.log(err))
-  }, [])
+    if(loggedIn) {
+      Promise.all([
+        api.getUserInfo(),
+        api.getInitialCards(),
+      ])
+      .then(([userData, cards]) => {
+        setCurrentUser(userData)
+        setCards(cards)
+      })
+      .catch(err => console.log(err))
+    }
+  }, [loggedIn])
 
 
   //открытие попапов
@@ -134,7 +137,7 @@ export default function App() {
 
   //ставим/убираем лайки
   function handleCardLike(card) {
-    const isLiked = card.likes.some(like => like._id === currentUser._id);
+    const isLiked = card.likes.some(like => like === currentUser._id);
  
     api.toggleLike(card._id, isLiked)
     .then((newCard) => {
@@ -153,11 +156,11 @@ export default function App() {
     .catch(err => console.log(err))
   }
 
-  function handleRegister(password, email) {
-    auth.register(password, email)
+  function handleRegister(email, password) {
+    auth.register(email, password)
     .then(() => {
       setTooltipStatus(true)
-      handleLogin(password, email)
+      handleLogin(email, password)
     })
     .catch(err => {
       setTooltipStatus(false)
@@ -168,12 +171,13 @@ export default function App() {
     })
   }
 
-  function handleLogin(password, email) {
-    auth.authorize(password, email)
+  function handleLogin(email, password) {
+    auth.authorize(email, password)
     .then((data) => {
+      console.log(data)
       if (data.token){
         setLoggedIn(true)
-        localStorage.setItem('jwt', data.token);
+        localStorage.setItem('token', data.token);
         setUserEmail(email)
         history.push('/');
       }  
@@ -182,13 +186,13 @@ export default function App() {
   }
 
   function handleTokenCheck() {
-    if (localStorage.getItem('jwt')){
-      const token = localStorage.getItem('jwt');
+    if (localStorage.getItem('token')){
+      const token = localStorage.getItem('token');
       auth.checkToken(token)
       .then(res => {
         if(res) {
           setLoggedIn(true)
-          setUserEmail(res.data.email)
+          setUserEmail(res.email)
           history.push('/');
         }
       })
@@ -200,7 +204,7 @@ export default function App() {
   }, [])
 
   function signOut(){
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     setLoggedIn(false);
     setUserEmail('')
     history.push('/signin');

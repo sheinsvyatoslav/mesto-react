@@ -1,7 +1,6 @@
 class Api {
-  constructor({baseUrl, token}) {
+  constructor({baseUrl}) {
     this._baseUrl = baseUrl;
-    this._token = token;
   }
 
   _checkResponseStatus(res) {
@@ -14,7 +13,8 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
     }})
     .then(this._checkResponseStatus);
   }
@@ -22,7 +22,8 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
     }})
     .then(this._checkResponseStatus);
   }
@@ -31,7 +32,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       }, 
       
@@ -44,7 +45,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       }, 
       
@@ -57,7 +58,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       }, 
       
@@ -70,7 +71,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       }, 
     })
@@ -81,9 +82,10 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: `${isLiked ? 'DELETE' : 'PUT'}`,
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-      }, 
+      },
+
     })
     .then(this._checkResponseStatus);
   }
@@ -91,8 +93,8 @@ class Api {
 
 //экземпляр API
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-32',
-  token: '46a3dddb-4cdf-4612-a6e0-215cf13e5e22'
+  baseUrl: 'https://api.mesto.project.front.nomoredomains.work',
+  //token: '46a3dddb-4cdf-4612-a6e0-215cf13e5e22',
 }); 
 
 export default api;
