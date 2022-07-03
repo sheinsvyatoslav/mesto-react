@@ -12,7 +12,8 @@ const NotFoundError = require('./errors/not-found-error');
 const { vaidateSignup, vaidateSignin } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 5000 } = process.env;
+const port = process.env.PORT || 5000;
+const { DATABASE_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 const app = express();
 app.use(cors());
 
@@ -40,8 +41,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect(DATABASE_URL);
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
 });
