@@ -34,8 +34,8 @@ class Api {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-      }, 
-      
+      },
+
       body: JSON.stringify({name, about})
     })
     .then(this._checkResponseStatus);
@@ -47,8 +47,8 @@ class Api {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-      }, 
-      
+      },
+
       body: JSON.stringify({avatar})
     })
     .then(this._checkResponseStatus);
@@ -60,8 +60,8 @@ class Api {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-      }, 
-      
+      },
+
       body: JSON.stringify({name, link})
     })
     .then(this._checkResponseStatus);
@@ -73,7 +73,7 @@ class Api {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-      }, 
+      },
     })
     .then(this._checkResponseStatus);
   }
@@ -93,8 +93,7 @@ class Api {
 
 //экземпляр API
 const api = new Api({
-  baseUrl: 'https://api.mesto.project.front.nomoredomains.work',
-  //token: '46a3dddb-4cdf-4612-a6e0-215cf13e5e22',
-}); 
+  baseUrl: 'https://sheinsvyatoslav-mesto.herokuapp.com',
+});
 
 export default api;
