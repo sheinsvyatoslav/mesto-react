@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.mesto.project.front.nomoredomains.work';
+export const BASE_URL = 'https://sheinsvyatoslav-mesto.herokuapp.com';
 
 const checkResponseStatus = (res) => {
   if (res.ok) {
