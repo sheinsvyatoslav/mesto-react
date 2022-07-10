@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   console.log(JWT_SECRET);
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    throw new UnauthorizedError('Необходима авторизаци');
+    throw new UnauthorizedError('Необходима авторизация');
   }
 
   const token = authorization.replace('Bearer ', '');
